@@ -17,10 +17,11 @@ jobs:
           python3 -m venv venv
           source ./venv/bin/activate
           pip install -r ./hello_world/requirements.txt
-    - run:
-        name: sam-build
-        command: |
           sam build -t template.yaml -m ./hello_world/requirements.txt
+    # - run:
+    #     name: sam-build
+    #     command: |
+    #       sam build -t template.yaml -m ./hello_world/requirements.txt
     - persist_to_workspace:
         root: ~/repo
         paths:
