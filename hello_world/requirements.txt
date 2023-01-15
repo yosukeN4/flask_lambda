@@ -1,3 +1,4 @@
 requests
 Flask
 aws-wsgi
+aws-sam-cli

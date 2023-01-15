@@ -1,0 +1,37 @@
+version: 2.1
+
+ecutors:
+  default:
+    docker:
+      - image: cimg/python:3.9
+    working_directory: ~/repo
+
+jobs:
+  setup:
+    executor: default
+    steps:
+    - checkout
+    - run: 
+        name: installing required modules 
+        command: |
+          python3 -m venv venv
+          source ./venv/bin/activate
+          pip install -r ./hello_world/requirements.txt
+    - run:
+        name: sam-build
+        command: |
+          sam build -t template_dev.yaml -m ./hello_world/requirements.txt
+    - persist_to_workspace:
+        root: ~/repo
+        paths:
+          - venv
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      # - env_var_check
+      - setup
+      # - tests:
+      #     requires:
+      #       - setup
