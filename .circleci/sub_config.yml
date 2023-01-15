@@ -17,22 +17,15 @@ jobs:
           python3 -m venv venv
           source ./venv/bin/activate
           pip install -r ./hello_world/requirements.txt
+          sam build -t template.yaml -m ./hello_world/requirements.txt
+    # - run:
+    #     name: sam-build
+    #     command: |
+    #       sam build -t template.yaml -m ./hello_world/requirements.txt
     - persist_to_workspace:
         root: ~/repo
         paths:
           - venv
-
-  sam-build:
-    executor: default
-    steps:
-    - checkout
-    - attach_workspace:
-        at: .
-    - run:
-        name: build by aws-sam-cli
-        command: |
-          source ./venv/bin/activate
-          sam build -t template.yml -m ./hello_world/requirements.txt
 
 workflows:
   version: 2
@@ -40,6 +33,6 @@ workflows:
     jobs:
       # - env_var_check
       - setup
-      - sam-build:
-          requires:
-            - setup
+      # - tests:
+      #     requires:
+      #       - setup
