@@ -20,7 +20,7 @@ jobs:
     - run:
         name: sam-build
         command: |
-          sam build -t template_dev.yaml -m ./hello_world/requirements.txt
+          sam build -t template.yaml -m ./hello_world/requirements.txt
     - persist_to_workspace:
         root: ~/repo
         paths:
