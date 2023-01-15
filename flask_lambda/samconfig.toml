@@ -1,0 +1,11 @@
+version = 1.0
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "flask-lambda-dev"
+region = "ap-northeast-1"
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+confirm_changeset = false
+disable_rollback = false
+s3_bucket = "test-sam-meti-trial"
