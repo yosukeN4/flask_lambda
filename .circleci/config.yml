@@ -22,7 +22,7 @@ jobs:
         paths:
           - venv
 
-  sam-build:
+  sam-build-deploy:
     executor: default
     steps:
     - checkout
@@ -33,6 +33,7 @@ jobs:
         command: |
           source ./venv/bin/activate
           sam build -t template.yml -m ./hello_world/requirements.txt
+          sam deploy --config-env dev
 
 workflows:
   version: 2
@@ -40,6 +41,6 @@ workflows:
     jobs:
       # - env_var_check
       - setup
-      - sam-build:
+      - sam-build-deploy:
           requires:
             - setup

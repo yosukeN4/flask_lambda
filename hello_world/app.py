@@ -9,11 +9,11 @@ def index():
 
 @app.route('/hello', methods=['GET'])
 def hello_get():
-    return {'msg': 'get method'}
+    return {'msg': 'get method ver.2'}
 
 @app.route('/hello', methods=['POST'])
 def hello_post():
-    return {'msg': 'post method'}
+    return {'msg': 'post method ver.2'}
 
 def lambda_handler(event, context):
     return awsgi.response(app, event, context)
